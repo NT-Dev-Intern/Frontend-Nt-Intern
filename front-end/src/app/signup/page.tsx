@@ -3,9 +3,9 @@ import React from 'react'
 
 const SignupPage = () => {
     return (
-        <div className='bg-[#F8D247] h-screen'>
-            <div className='bg-white h-screen w-[70vw] rounded-l-[40px] shadow-2xl  '>
-                <div className='flex flex-col ml-[10vw] gap-12 w-fit'>
+        <div className='bg-[#F8D247] h-screen flex justify-center '>
+            <div className='bg-white h-screen w-[70vw] rounded-[40px] shadow-2xl flex justify-center '>
+                <div className='flex flex-col  gap-12 w-fit'>
                     <h1 className='text-[40px] font-bold mt-[4vw]'>
                         CREATE ACCOUNT
                     </h1>
