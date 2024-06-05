@@ -3,8 +3,8 @@ import React from 'react'
 
 const Loginpage = () => {
   return (
-    <div className='bg-[#F8D247] h-screen'>
-            <div className='bg-white h-screen w-[70vw] mr-auto rounded-r-[40px] shadow-2xl  '>
+    <div className='bg-[#F8D247] h-screen flex justify-center place-items-center'>
+            <div className='bg-white h-[70vh] w-[70vw] rounded-[40px] shadow-2xl'>
                 <div className='flex flex-col justify-center h-full ml-[10vw] gap-12  w-[742px]'>
                     <h1 className='text-[40px] font-bold '>
                         Log In
@@ -43,8 +43,8 @@ const Loginpage = () => {
                     <button className='w-full rounded-lg bg-[#F8D247] py-2 border-black border'>
                         Log In
                     </button>
-                    <p>
-                    Don't have account yet? 
+                    <p className='flex gap-1'>
+                    Don't have account yet?  
                     <Link href={'/signup'} className='text-[#2110E4]'>
                         Register
                     </Link>

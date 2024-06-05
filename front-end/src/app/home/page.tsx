@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
 
-const SignupPage = () => {
+const HomePage = () => {
     return (
         <div className='bg-[#F8D247] h-screen flex justify-center place-items-center'>
             <div className='bg-white h-[90vh] w-[70vw] rounded-[40px] shadow-2xl flex justify-center '>
                 <div className='flex flex-col  gap-12 w-fit'>
                     <h1 className='text-[40px] font-bold mt-[4vw]'>
-                        CREATE ACCOUNT
+                        Home Page
                     </h1>
                     <div className='flex gap-8'>
                         <div className="relative">
@@ -103,4 +103,4 @@ const SignupPage = () => {
     )
 }
 
-export default SignupPage
+export default HomePage
