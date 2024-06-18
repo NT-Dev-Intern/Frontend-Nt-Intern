@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import {
   Disclosure,
   DisclosureButton,
@@ -12,21 +12,29 @@ import {
   Transition,
 } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
+import { isAuthenticated } from '@/Utils/Auth'
+import { usePathname } from 'next/navigation'
 
-const navigation = [
-  { name: 'Dashboard', href: '/dashboard', current: true },
-  { name: 'Team', href: '/team', current: false },
-  { name: 'Projects', href: '/projects', current: false },
-  { name: 'Calendar', href: '/calendar', current: false },
-]
+
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+
+
 const Navbar = () => {
+  const pathname = usePathname()
+  const navigation = [
+    { name: 'Dashboard', href: '/dashboard', current: pathname === '/dashboard' },
+    { name: 'Upload', href: '/upload', current: pathname === '/upload' },
+    { name: 'Projects', href: '/projects', current: pathname === '/projects' },
+    { name: 'Calendar', href: '/calendar', current: pathname === '/calendar' },
+  ]
+  
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-800 border-b border-gray-700">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -123,12 +131,9 @@ const Navbar = () => {
                       </MenuItem>
                       <MenuItem>
                         {({ focus }) => (
-                          <a
-                            href="#"
-                            className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
+                          <Link href="/login" onClick={() => localStorage.removeItem('authToken')} className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
                             Sign out
-                          </a>
+                          </Link>
                         )}
                       </MenuItem>
                     </MenuItems>
