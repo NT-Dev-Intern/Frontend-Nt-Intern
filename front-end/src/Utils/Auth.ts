@@ -5,20 +5,20 @@ export const isAuthenticated = async () => {
 
     if (!token) {
         console.error('No token found, please log in first.');
-        window.location.href = '/login';
-        return;
+        
+        return false;
     }
 
     try {
-        const res = await Axios.get('/users/me', {
+        const res = await Axios.get('/me', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
-        // console.log('Protected data:', res.data);
+        return res.data.user.role;
     } catch (err) {
         console.error('Failed to fetch protected data:', err);
-        window.location.href = '/login';
+        
     }
 };
 

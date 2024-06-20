@@ -1,5 +1,6 @@
 "use client"
 
+import { isAuthenticated } from '@/Utils/Auth'
 import Axios from '@/Utils/Axios'
 import React, { useState } from 'react'
 
@@ -9,10 +10,10 @@ const Loginpage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const res = await Axios.post('/users/login', {
+            const res = await Axios.post('/login', {
                 "username": username,
                 "password": password
             });
@@ -22,8 +23,12 @@ const Loginpage = () => {
             localStorage.setItem('authToken', token);
 
             console.log('Login successful:', res.data);
-            window.location.href = '/dashboard';
-
+            const role = await isAuthenticated()
+            if (role === 'admin') {
+                window.location.href = '/admin';
+            } else {
+                window.location.href = '/dashboard';
+            }
             // Optionally, redirect the user to a protected route
             // window.location.href = '/dashboard';
 

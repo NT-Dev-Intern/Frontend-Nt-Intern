@@ -29,7 +29,7 @@ const Upload = () => {
           const formData = new FormData();
           formData.append('file', selectedFile);
       
-          const res = await Axios.post('/users/upload-mp3', formData, {
+          const res = await Axios.post('/upload-mp3', formData, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'multipart/form-data'

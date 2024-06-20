@@ -16,22 +16,35 @@ import Link from 'next/link'
 import { isAuthenticated } from '@/Utils/Auth'
 import { usePathname } from 'next/navigation'
 
-
-
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-
-
 const Navbar = () => {
   const pathname = usePathname()
-  const navigation = [
+  const [role,setRole] = useState('')
+  let navigation = [
     { name: 'Dashboard', href: '/dashboard', current: pathname === '/dashboard' },
     { name: 'Upload', href: '/upload', current: pathname === '/upload' },
     { name: 'Projects', href: '/projects', current: pathname === '/projects' },
     { name: 'Calendar', href: '/calendar', current: pathname === '/calendar' },
   ]
+  if (role === 'admin') {
+    navigation = [
+      { name: 'Controller', href: '/admin', current: pathname === '/admin' },
+      
+    ]
+  }
+  console.log(role)
+  
+  const getUser = async () => {
+    const res = await isAuthenticated()
+    setRole(res)
+  }
+
+  useEffect(() =>{
+    getUser()
+  },[])
   
   return (
     <Disclosure as="nav" className="bg-gray-800 border-b border-gray-700">
