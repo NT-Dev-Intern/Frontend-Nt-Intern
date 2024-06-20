@@ -14,7 +14,7 @@ const Preview = ({params} : {params : {id : number}}) => {
         const getTracks = async () => {
             const token = localStorage.getItem('authToken');
             try {
-                const res = await Axios.get(`/users/get-tracks/${params.id}`, {
+                const res = await Axios.get(`/get-tracks/${params.id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     },
