@@ -5,8 +5,6 @@ export const isAuthenticated = async () => {
 
     if (!token) {
         console.error('No token found, please log in first.');
-        
-        return false;
     }
 
     try {

@@ -24,13 +24,14 @@ const Loginpage = () => {
 
             console.log('Login successful:', res.data);
             const role = await isAuthenticated()
+            console.log(role)
             if (role === 'admin') {
-                window.location.href = '/admin';
+                window.location.href = '/admin/user-controller';
             } else {
                 window.location.href = '/dashboard';
             }
             // Optionally, redirect the user to a protected route
-            // window.location.href = '/dashboard';
+            
 
         } catch (err) {
             console.error('Login failed:', err);
