@@ -95,9 +95,9 @@ const page = () => {
 
                 const res = await Axios.post('/upload-mp3', formData, {
                     headers: {
-                      'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${token}`
                     }
-                  });
+                });
 
                 console.log('Upload response:', res.data);
             }
@@ -116,11 +116,23 @@ const page = () => {
 
 
     return (
-        <div className='flex flex-col items-center gap-6'>
-            <h1 className=' text-lg'>Upload MP3</h1>
-            <div className='flex justify-center'>
+        <div className='flex flex-col items-center gap-12 py-6 h-screen'>
+            <h1 className=' text-2xl'>Upload MP3</h1>
+            <div className='flex justify-around items-center gap- w-full  '>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload file</label>
                 <input
                     type="file"
+                    id='file_input'
+                    className="block  text-sm text-gray-500
+        file:me-4 file:py-2 file:px-4
+        file:rounded-lg file:border-0
+        file:text-sm file:font-semibold
+        file:bg-blue-600 file:text-white
+        hover:file:bg-blue-700
+        file:disabled:opacity-50 file:disabled:pointer-events-none
+        dark:text-neutral-500
+        dark:file:bg-blue-500
+        dark:hover:file:bg-blue-400"
                     accept="audio/mpeg"
                     onChange={(e) => e.target.files && setFile(e.target.files[0])}
                 />
@@ -129,9 +141,14 @@ const page = () => {
                     value={uploadTime}
                     onChange={(e) => setUploadTime(e.target.value)}
                 />
+                {/* <input
+                    type="time"
+                    value={dayjs(uploadTime).format('HH:mm')}
+                    onChange={(e) => setUploadTime(`${dayjs().format('YYYY-MM-DD')}T${e.target.value}`)}
+                /> */}
 
-                <button onClick={handleAddFile}>Add to List</button>
-                <button onClick={handleUpload}>Upload All</button>
+                <button onClick={handleAddFile} className="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add to List</button>
+                <button onClick={handleUpload} className="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Upload All</button>
             </div>
 
 
