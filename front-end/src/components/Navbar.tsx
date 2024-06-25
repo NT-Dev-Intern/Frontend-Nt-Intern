@@ -26,7 +26,7 @@ const Navbar = () => {
   let navigation = [
     { name: 'Dashboard', href: '/dashboard', current: pathname === '/dashboard' },
     { name: 'Upload', href: '/upload', current: pathname === '/upload' },
-    { name: 'Projects', href: '/projects', current: pathname === '/projects' },
+    { name: 'Projects', href: '/mp3-scheduler', current: pathname === '/mp3-scheduler' },
     { name: 'Calendar', href: '/calendar', current: pathname === '/calendar' },
   ]
   if (role === 'admin') {
