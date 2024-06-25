@@ -133,7 +133,7 @@ const page = ({ params }: { params: { id: number } }) => {
     useEffect(() => {
         checkAuth()
         tracksData()
-    },[])
+    }, [])
 
 
     return (
@@ -187,13 +187,24 @@ const page = ({ params }: { params: { id: number } }) => {
                             :
                             <>
                                 {filesList.map((item, index) => (
-                                    <li key={index} className='flex gap-4  justify-center border-2 border-black rounded-lg w-full px-4 py-4'>
+                                    <li key={index} className='flex gap-4 border-2 border-black rounded-lg w-[100%] px-4 py-6'>
+                                        <div className='w-full'>
+                                            <div className='flex justify-between w-full items-center text-indigo-600 font-semibold'>
+                                                <p>
+                                                    {dayjs(item.uploadEndTime).format('DD-MM-YYYY')}
+                                                </p>
+                                                <p>
+                                                    {` ${dayjs(item.uploadTime).format('HH:mm:ss')} - ${dayjs(item.uploadEndTime).format('HH:mm:ss')}`}
+                                                </p>
 
-                                        <div >
-                                            {`File Name : ${item.file?.name}`}<br/>
-                                            {`Start Time: ${dayjs(item.uploadTime).format('DD-MM-YYYY HH:mm:ss')}`}<br/>
-                                            {`End Time: ${dayjs(item.uploadEndTime).format('DD-MM-YYYY HH:mm:ss')}`}<br/>
+                                            </div><br />
+
+                                            {`File Name : ${item.file?.name}`}<br />
+                                            {/* {`Start Time: ${dayjs(item.uploadTime).format('DD-MM-YYYY HH:mm:ss')}`}<br />
+                                            {`End Time: ${dayjs(item.uploadEndTime).format('DD-MM-YYYY HH:mm:ss')}`}<br /> */}
                                         </div>
+
+
                                     </li>
                                 ))}
                             </>
@@ -206,13 +217,29 @@ const page = ({ params }: { params: { id: number } }) => {
                     <h2 className='py-4'>Files uploaded</h2>
                     <ul className='flex flex-col  gap-4 py-4'>
 
-                        {uploads.map((item, index) => (
-                            <li key={index} className='flex gap-4  justify-center border-2 border-black rounded-lg w-fit px-4 py-6'>
+                        {uploads.sort((a, b) => {
+                            // Sort by uploadTime (or endTime) in ascending order
+                            return dayjs(a.uploadTime).valueOf() - dayjs(b.uploadTime).valueOf();
+                            // If sorting by endTime: return dayjs(a.endTime).valueOf() - dayjs(b.endTime).valueOf();
+                        }).map((item, index) => (
+                            <li key={index} className='flex gap-4 border-2 border-black rounded-lg w-[100%] px-4 py-6'>
 
-                                <div >
+                                <div className='w-full'>
+                                    <div className='flex justify-between w-full items-center text-indigo-600 font-semibold'>
+                                        <p>
+                                            {dayjs(item.endTime).format('DD-MM-YYYY')}
+                                        </p>
+                                        <p>
+                                            {` ${dayjs(item.uploadTime).format('HH:mm:ss')} - ${dayjs(item.endTime).format('HH:mm:ss')}`}
+                                        </p>
+
+                                    </div><br />
+                                    {/* {`$ ${dayjs(item.uploadTime).format('HH:mm:ss')} - ${dayjs(item.endTime).format('HH:mm:ss')}`}<br /> */}
                                     {`File Name : ${item.title}`}<br />
-                                    {`Start Time: ${dayjs(item.uploadTime).format('DD-MM-YYYY HH:mm:ss')}`}<br />
-                                    {`End Time: ${dayjs(item.endTime).format('DD-MM-YYYY HH:mm:ss')}`}<br />
+                                    {/* {`Start Time: ${dayjs(item.uploadTime).format('DD-MM-YYYY HH:mm:ss')}`}<br />
+                                    {`End Time: ${dayjs(item.endTime).format('DD-MM-YYYY HH:mm:ss')}`}<br /> */}
+
+                                    {/* {`${dayjs(item.uploadTime).format('HH:mm:ss')} - ${dayjs(item.endTime).format('HH:mm:ss')}`} */}
                                 </div>
                             </li>
                         ))}
